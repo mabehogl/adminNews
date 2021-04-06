@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="css/dash.css">
+  <link rel="stylesheet" type="text/css" href = "css/main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <title>Admin</title>
+</head>
+<body>
+<nav class="navbar">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar navbar-default"></span>
+          <span class="icon-bar navbar-default"></span> 
+          <span class="icon-bar navbar-default"></span>                       
+        </button>
+        <a class="navbar-brand" href="#">NOTICEBOD</a>
+      </div>
+      
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <div class="center">
+        <ul class="nav navbar-nav" id="nav-mobile">
+          <li class="logged-in" style="display: none;">
+            <a href="#" class="white-text" id="articles">DASHBOARD</a>
+          </li>
+          <li class="logged-in" style="display: none;">
+            <a href="#" class="modal-trigger" data-target="modal-create">ADD NEWPOST</a>
+          </li>
+          <li class="logged-in" style="display:none;">
+            <a href="#"  id="signOut">SIGN OUT</a>
+          </li>
+          <li class="logged-out" style="display: none">
+            <a href="#" class="white-text modal-trigger" data-target="modal-login">LOGIN</a>
+          </li>
+          <li class="logged-in" style="display:none;">
+            <a href="#" class="white-text modal-trigger" data-target="modal-signup">MANAGE USERS</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="logged-in" style="display: none">
+            <a href="#" class="white-text modal-trigger" data-target="modal-account">Account</a>
+          </li></ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- News-->
+  <div class="" id ="#articles">
+    <ul class="flex-container articles">
+    </ul>
+  </div>
+
+  
+  <!-- ACCOUNT-->
+  <div id="modal-account" class="modal">
+    <div class="modal-content center-align">
+      <h4>Account details</h4><br/>
+      <div class="account-details col-5"></div>
+    </div>
+  </div>
+
+
+  <!--Publicsh-->
+  <div id="modal-create" class="modal container-fluid">
+    <div class="modal-content">
+      <div class ="wrap-login100">
+      <h4>New Post</h4><br />
+      <form id="create-form" class="login-text">
+        <div class="form-group">
+          <label for="author">Author</label>
+          <input type="text" class="form-control" id="author" required/>
+        </div>
+        <div class="form-group">
+          <label for="content">title</label>
+          <input type="text" class="form-control" id="title" required/>
+        </div>
+        <div class="form-group">
+          <label for="image">image</label>
+          <input type="file" class="form-control" id="file">
+        </div>
+        <div class="form-group">
+          <label for="publishedAt">PublishedAt</label>
+          <input type="text" class="form-control" id="publishedAt" value="2020-02-05T11:00:00" placeholder="2020-02-05T11:00:00" required/>
+        </div>
+      <div class="input-field h-6">
+          <textarea id="content" class ="form-control rounded-0 " rows="14" col="6" required></textarea>
+          <label for="content">Content</label>
+        </div>
+        <button class="btn btn-primary bg-lg">Publish</button>
+      </form>
+    </div>
+  </div></div>
+  <!--Login-->
+  <div id="modal-login" class="modal">
+    <div class="modal-content">  
+      <div class="wrap-login100">
+      <div class="login100-form validate-form">
+        <form id="login">
+        <span class="login100-form-title">
+          N O T I C E B O D
+        </span>
+        <span class="login-text">
+          <div class="b-d">Welcome back! Pls login to your account</div>
+        </span>
+
+        <div class="wrap-input100 validate-input" data-validate = "Enter username">
+          <input class="input100" type="text" id="username">
+          <span class="focus-input100" data-placeholder="Username"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="Enter password">
+          <input class="input100" type="password" id="pass">
+          <span class="focus-input100" data-placeholder="Password"></span>
+        </div>
+        <div class="remember">
+        <input type="checkbox">Remember me
+        <div class="float">
+        <span class="txt1"><a href="">
+          Forgot Passsword</a>
+        </span></div>
+            </div>
+
+        <div class="container-login100-form-btn b">
+          <button class="login100-form-btn">
+            Login
+          </button>
+          </div>
+          <div class="container-login100-form-btn">
+            <button class="login100-form-sign">
+              Signup
+            </button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+<div id="dropDownSelect1"></div>
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+  
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
+  
+  
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyC_O1mk_Op8tZNeR41mTMMdwg8Qv_geRrc",
+      authDomain: "brewcrew-234a5.firebaseapp.com",
+      databaseURL: "https://brewcrew-234a5.firebaseio.com",
+      projectId: "brewcrew-234a5",
+      storageBucket: "brewcrew-234a5.appspot.com",
+      messagingSenderId: "126749772823",
+      appId: "1:126749772823:web:3c5a341198719f70eba052",
+      measurementId: "G-DFMKGTJKG2"
+    };
+    firebase.initializeApp(firebaseConfig); 
+  
+    const auth = firebase.auth();
+    const db = firebase.database();
+    const storage = firebase.storage();
+    
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/auth.js"></script>
+  </body>
+  </html>
